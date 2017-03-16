@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  $(".add-comment-section").hide()
+  $(".add-comment-button").click(function() {
+    $(".add-comment-section").toggle()
+  })
+})

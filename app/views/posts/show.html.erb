@@ -31,10 +31,18 @@
             <thead>
               <tr>
                 <th>Author</th>
+                <th>Comment</th>
+                <th>Created</th>
               </tr>
             </thead>
             <tbody>
-
+              <% @comments.each do |comment| %>
+                <tr>
+                  <td><%= "#{comment.user.first_name} #{comment.user.last_name}" %></td>
+                  <td><%= comment.body %></td>
+                  <td><%= comment.created_at %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -43,4 +51,42 @@
   </div>
 </div>
 
-<%= link_to "Return to Posts", posts_path %>
+<button class="add-comment-button btn btn-primary">Add New Comment</button>
+<div class="add-comment-section">
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_for @comment, :html => {:class => "form-horizontal"} do |f| %>
+        <% if @comment.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger" role="alert">
+            <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <h3><li><%= message %></li></h3>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :post_id, value: @post.id %>
+
+        <div class="field form-group">
+          <%= f.label :body, class: "col-sm-2 control-label" %>
+          <div class="col-md-8 col-sm-8 col-xs-8">
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="actions form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to "Return to Posts", posts_path %>
+  </div>
+</div>
