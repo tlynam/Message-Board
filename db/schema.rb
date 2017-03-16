@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170315041444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts_tables", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title",      null: false
     t.text     "body",       null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170315041444) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts_tables", ["user_id"], name: "index_posts_tables_on_user_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
