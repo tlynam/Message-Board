@@ -2,13 +2,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.paginate(page: params[:page], per_page:  10).order(:created_at)
+    @posts = Post.ordered.paginate(page: params[:page], per_page:  10)
   end
 
   def show
     @post = Post.find params[:id]
     @comment = Comment.new
-    @comments = @post.comments.order(:created_at)
+    @comments = @post.comments.ordered
   end
 
   def new
