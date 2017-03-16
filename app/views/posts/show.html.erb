@@ -28,7 +28,7 @@
         </div>
         <div class="panel-body">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table comments-table">
               <thead>
                 <tr>
                   <th>Author</th>
@@ -38,10 +38,9 @@
               </thead>
               <tbody>
                 <% @comments.each do |comment| %>
-                  <tr>
-                    <td><%= "#{comment.user.first_name} #{comment.user.last_name}" %></td>
-                    <td><%= comment.body %></td>
+                  <tr class="comments-row">
                     <td class="comments-user"><%= comment.user.display_name %></td>
+                    <td class="comments-body"><%= comment.body %></td>
                     <td><%= comment.created_at %></td>
                   </tr>
                 <% end %>
