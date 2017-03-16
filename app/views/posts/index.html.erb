@@ -16,6 +16,7 @@
             <tr>
               <td><%= link_to post.title, post_path(post) %></td>
               <td><%= link_to post.user.first_name, user_path(post.user) %></td>
+              <td class="post-user"><%= link_to post.user.display_name, user_path(post.user) %></td>
             </tr>
           <% end %>
         </tbody>
